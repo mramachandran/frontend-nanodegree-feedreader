@@ -13,6 +13,7 @@ $(function() {
     * a related set of tests. This suite is all about the RSS
     * feeds definitions, the allFeeds variable in our application.
     */
+    
     describe('RSS Feeds', function() {
         /* This is our first test - it tests to make sure that the
          * allFeeds variable has been defined and that it is not
@@ -31,22 +32,36 @@ $(function() {
          * in the allFeeds object and ensures it has a URL defined
          * and that the URL is not empty.
          */
-
+        it('have URL defined', function() {
+            expect(allFeeds).toBeDefined();
+            expect(getURL(0).length).not.toBe(0);
+        });
 
         /* TODO: Write a test that loops through each feed
          * in the allFeeds object and ensures it has a name defined
          * and that the name is not empty.
          */
+
+        it('have Name defined', function() {
+            expect(allFeeds).toBeDefined();
+            expect(getName(0).length).not.toBe(0);
+        });
+
     });
 
 
     /* TODO: Write a new test suite named "The menu" */
+    
+    describe('The menu', function() {
 
-        /* TODO: Write a test that ensures the menu element is
-         * hidden by default. You'll have to analyze the HTML and
-         * the CSS to determine how we're performing the
-         * hiding/showing of the menu element.
-         */
+        it('is visible when clicked', function() {          
+            expect($('body')).toBe(0);
+        });
+
+        it('is invisible when clicked again', function() {          
+            expect($('body')).toBe(0);
+        });        
+        
 
          /* TODO: Write a test that ensures the menu changes
           * visibility when the menu icon is clicked. This test
@@ -54,7 +69,15 @@ $(function() {
           * clicked and does it hide when clicked again.
           */
 
+        });
+
     /* TODO: Write a new test suite named "Initial Entries" */
+    describe('Initial Entries', function() {
+        it('has at least a single entry within the feed', function() {
+            expect(allFeeds).toBeDefined();
+            expect(allFeeds.length).not.toBe(0);
+        });
+    });
 
         /* TODO: Write a test that ensures when the loadFeed
          * function is called and completes its work, there is at least
@@ -62,6 +85,13 @@ $(function() {
          * Remember, loadFeed() is asynchronous so this test will require
          * the use of Jasmine's beforeEach and asynchronous done() function.
          */
+
+    describe('New Feed Selection', function() {
+        it('loads new content', function() {
+            expect(allFeeds).toBeDefined();
+            expect(allFeeds.length).not.toBe(0);
+        });
+    });
 
     /* TODO: Write a new test suite named "New Feed Selection" */
 
