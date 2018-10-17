@@ -14,6 +14,8 @@ $(function() {
     * feeds definitions, the allFeeds variable in our application.
     */
     
+
+
     describe('RSS Feeds', function() {
         /* This is our first test - it tests to make sure that the
          * allFeeds variable has been defined and that it is not
@@ -24,7 +26,10 @@ $(function() {
          */
         it('are defined', function() {
             expect(allFeeds).toBeDefined();
-            expect(allFeeds.length).not.toBe(0);
+            allFeeds.forEach(function(feed) {
+                expect(feed.length).not.toBe(0);        
+            });
+            
         });
 
 
@@ -34,7 +39,10 @@ $(function() {
          */
         it('have URL defined', function() {
             expect(allFeeds).toBeDefined();
-            expect(getURL(0).length).not.toBe(0);
+            allFeeds.forEach(function(feed) {
+                expect(feed.url).not.toBe(0);        
+            });            
+            //expect(getURL(0).length).not.toBe(0);
         });
 
         /* TODO: Write a test that loops through each feed
@@ -44,7 +52,9 @@ $(function() {
 
         it('have Name defined', function() {
             expect(allFeeds).toBeDefined();
-            expect(getName(0).length).not.toBe(0);
+            allFeeds.forEach(function(feed) {
+                expect(feed.name).not.toBe(0);        
+            }); 
         });
 
     });
@@ -54,13 +64,21 @@ $(function() {
     
     describe('The menu', function() {
 
-        it('is visible when clicked', function() {          
-            expect($('body')).toBe(0);
+        it('is hidden be default', function() {          
+            expect(isMenuHidden()).toBe(true);
         });
 
-        it('is invisible when clicked again', function() {          
-            expect($('body')).toBe(0);
-        });        
+        it('is dispalyed when clicked', function() {          
+            expect(triggerClickAndCheckMenuVisibility()).toBe(false);
+        });
+
+        it('is hidden when clicked again', function() {          
+            expect(triggerClickAndCheckMenuVisibility()).toBe(true);
+        });
+
+        //it('is invisible when clicked again', function() {          
+            //expect($('body')).toBe(0);
+        //});        
         
 
          /* TODO: Write a test that ensures the menu changes
@@ -73,9 +91,23 @@ $(function() {
 
     /* TODO: Write a new test suite named "Initial Entries" */
     describe('Initial Entries', function() {
-        it('has at least a single entry within the feed', function() {
-            expect(allFeeds).toBeDefined();
-            expect(allFeeds.length).not.toBe(0);
+
+
+        beforeEach(function(done) {
+            setTimeout(function() {
+          
+              // do some stuff
+              loadFeed();
+          
+              done();
+          
+            }, 100);
+            });
+
+
+        it('have at least a single entry within the feed', function() {
+             //expect(allFeeds).toBeDefined();
+            expect(doesContainerCarryChildren()).toBe(true);
         });
     });
 
@@ -87,6 +119,14 @@ $(function() {
          */
 
     describe('New Feed Selection', function() {
+        beforeEach(function(done) {
+            setTimeout(function() {          
+              // do some stuff
+              loadFeed();          
+              done();          
+            }, 100);
+            });
+
         it('loads new content', function() {
             expect(allFeeds).toBeDefined();
             expect(allFeeds.length).not.toBe(0);
