@@ -42,7 +42,7 @@ $(function() {
             allFeeds.forEach(function(feed) {
                 expect(feed.url).not.toBe(0);        
             });            
-            //expect(getURL(0).length).not.toBe(0);
+           
         });
 
         /* TODO: Write a test that loops through each feed
@@ -64,6 +64,12 @@ $(function() {
     
     describe('The menu', function() {
 
+         /* TODO: Write a test that ensures the menu changes
+          * visibility when the menu icon is clicked. This test
+          * should have two expectations: does the menu display when
+          * clicked and does it hide when clicked again.
+          */
+
         it('is hidden be default', function() {          
             expect(isMenuHidden()).toBe(true);
         });
@@ -74,18 +80,8 @@ $(function() {
 
         it('is hidden when clicked again', function() {          
             expect(triggerClickAndCheckMenuVisibility()).toBe(true);
-        });
-
-        //it('is invisible when clicked again', function() {          
-            //expect($('body')).toBe(0);
-        //});        
+        });       
         
-
-         /* TODO: Write a test that ensures the menu changes
-          * visibility when the menu icon is clicked. This test
-          * should have two expectations: does the menu display when
-          * clicked and does it hide when clicked again.
-          */
 
         });
 
@@ -104,19 +100,19 @@ $(function() {
             }, 100);
             });
 
-
-        it('have at least a single entry within the feed', function() {
-             //expect(allFeeds).toBeDefined();
-            expect(doesContainerCarryChildren()).toBe(true);
-        });
-    });
-
         /* TODO: Write a test that ensures when the loadFeed
          * function is called and completes its work, there is at least
          * a single .entry element within the .feed container.
          * Remember, loadFeed() is asynchronous so this test will require
          * the use of Jasmine's beforeEach and asynchronous done() function.
          */
+        it('have at least a single entry within the feed', function() {
+             //expect(allFeeds).toBeDefined();
+            expect(doesContainerCarryChildren()).toBe(true);
+        });
+    });
+
+
 
     describe('New Feed Selection', function() {
         beforeEach(function(done) {
