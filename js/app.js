@@ -83,6 +83,53 @@ function init() {
      });
  }
 
+/**
+ * 
+ * @param {index position of the feed} index 
+ * returns a feed's URL
+ */
+ function getURL(index) {
+    return allFeeds[index].url
+ } 
+
+ /**
+  * 
+  * @param {index position of the feed} index 
+  * returns a feed's name
+  */
+ function getName(index) {
+    return allFeeds[index].name
+ } 
+
+ /**
+  * returns whether the menu is hidden or not 
+  * by checking for existence of "menu-hidden" class
+  */
+ function isMenuHidden() {
+    return $( 'body' ).hasClass( "menu-hidden" )
+ }
+
+ /**
+  *  returns whether the feed has at least an entry
+  */
+ function doesContainerCarryChildren() {
+    return $('.feed').getElementById(".entry").hasChildNodes()
+ }
+
+ /**
+  * the function triggers click on the menu.
+  * After the click function is initiated, 
+  * it returns whether the menu is hidden or not 
+  * true if hidden, else false
+  */
+ function triggerClickAndCheckMenuVisibility() {
+    //trigger menu click
+    $('.menu-icon-link').click();
+    return isMenuHidden();
+ }
+
+ 
+
 /* Google API: Loads the Feed Reader API and defines what function
  * to call when the Feed Reader API is done loading.
  */
