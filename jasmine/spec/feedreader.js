@@ -33,7 +33,7 @@ $(function() {
         });
 
 
-        /* TODO: Write a test that loops through each feed
+        /*  Test that loops through each feed
          * in the allFeeds object and ensures it has a URL defined
          * and that the URL is not empty.
          */
@@ -45,7 +45,7 @@ $(function() {
            
         });
 
-        /* TODO: Write a test that loops through each feed
+        /* Test that loops through each feed
          * in the allFeeds object and ensures it has a name defined
          * and that the name is not empty.
          */
@@ -60,79 +60,88 @@ $(function() {
     });
 
 
-    /* TODO: Write a new test suite named "The menu" */
+    /* test suite named "The menu" */
     
     describe('The menu', function() {
 
-         /* TODO: Write a test that ensures the menu changes
+         /* Test that ensures the menu changes
           * visibility when the menu icon is clicked. This test
           * should have two expectations: does the menu display when
           * clicked and does it hide when clicked again.
           */
 
         it('is hidden be default', function() {          
-            expect(isMenuHidden()).toBe(true);
+            expect($( 'body' ).hasClass( "menu-hidden" )).toBe(true);
         });
 
-        it('is dispalyed when clicked', function() {          
-            expect(triggerClickAndCheckMenuVisibility()).toBe(false);
+        it('is dispalyed when clicked', function() {    
+            $('.menu-icon-link').click();      
+            expect($( 'body' ).hasClass( "menu-hidden" )).toBe(false);
         });
 
-        it('is hidden when clicked again', function() {          
-            expect(triggerClickAndCheckMenuVisibility()).toBe(true);
+        it('is hidden when clicked again', function() {    
+            $('.menu-icon-link').click();      
+            expect($( 'body' ).hasClass( "menu-hidden" )).toBe(true);
         });       
         
 
         });
 
-    /* TODO: Write a new test suite named "Initial Entries" */
+    /* Test suite named "Initial Entries" */
     describe('Initial Entries', function() {
-
-
         beforeEach(function(done) {
-            setTimeout(function() {
-          
+            setTimeout(function() {          
               // do some stuff
-              loadFeed();
-          
+              loadFeed(0); 
+              oldFirstURL = allFeeds[0].url;  
               done();
-          
-            }, 100);
-            });
+              loadFeed(1) ;
+              done();
+              newFirstURL = allFeeds[1].url;                                
+            }, 1000);
+        });
 
-        /* TODO: Write a test that ensures when the loadFeed
+        /* Test that ensures when the loadFeed
          * function is called and completes its work, there is at least
          * a single .entry element within the .feed container.
          * Remember, loadFeed() is asynchronous so this test will require
          * the use of Jasmine's beforeEach and asynchronous done() function.
          */
         it('have at least a single entry within the feed', function() {
-             //expect(allFeeds).toBeDefined();
-            expect(doesContainerCarryChildren()).toBe(true);
+             
+             expect($('.feed .entry').length>0).toBe(true);
         });
     });
 
 
+  
+    /* Test suite named "New Feed Selection" */
 
-    describe('New Feed Selection', function() {
-        beforeEach(function(done) {
-            setTimeout(function() {          
-              // do some stuff
-              loadFeed();          
-              done();          
-            }, 100);
-            });
-
-        it('loads new content', function() {
-            expect(allFeeds).toBeDefined();
-            expect(allFeeds.length).not.toBe(0);
-        });
-    });
-
-    /* TODO: Write a new test suite named "New Feed Selection" */
-
-        /* TODO: Write a test that ensures when a new feed is loaded
+        /* Test that ensures when a new feed is loaded
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
+         * 
+         * Had to increase the timeout second parameter to 1000
          */
+
+        var oldFirstURL, newFirstURL; 
+        describe('New Feed Selection', function() {
+            beforeEach(function(done) {
+                setTimeout(function() {          
+                  // do some stuff
+                  loadFeed(0); 
+                  oldFirstURL = allFeeds[0].url;  
+                  done();
+                  loadFeed(1) ;
+                  done();
+                  newFirstURL = allFeeds[1].url;                                
+                }, 1000);
+                });
+    
+            it('loads new content', function() {
+                //expect(allFeeds).toBeDefined();
+                expect(oldFirstURL).not.toBe(newFirstURL);
+            });
+        });
+    
 }());
