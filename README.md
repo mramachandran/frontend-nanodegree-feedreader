@@ -10,5 +10,5 @@ which then compared against the test expectation.
 
 You do not need need any special build tools to run the program. All you need is to run index.html
 
-TODO: I still need to complete the last two test suites for completion of the program. 
+
 
