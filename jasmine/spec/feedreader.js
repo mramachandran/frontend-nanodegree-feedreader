@@ -94,7 +94,6 @@ $(function() {
               // do some stuff
               loadFeed(0); 
               oldFirstURL = allFeeds[0].url;  
-              done();
               loadFeed(1) ;
               done();
               newFirstURL = allFeeds[1].url;                                
@@ -124,23 +123,26 @@ $(function() {
          * Had to increase the timeout second parameter to 1000
          */
 
-        var oldFirstURL, newFirstURL; 
+        
         describe('New Feed Selection', function() {
-            beforeEach(function(done) {
-                setTimeout(function() {          
+            let  initialFeed, finalFeed; 
+            beforeEach(function(done) {        
                   // do some stuff
-                  loadFeed(0); 
-                  oldFirstURL = allFeeds[0].url;  
-                  done();
-                  loadFeed(1) ;
-                  done();
-                  newFirstURL = allFeeds[1].url;                                
-                }, 1000);
+                  loadFeed(0, function() {
+                     initialFeed = $('.feed')[0].outerHTML;
+                     console.log(initialFeed);
+                    //load a new feed
+                    loadFeed(1,function(){
+                         finalFeed = $('.feed')[0].outerHTML;
+                        done();
+                    });
+
+                  });                                                                            
                 });
     
             it('loads new content', function() {
                 //expect(allFeeds).toBeDefined();
-                expect(oldFirstURL).not.toBe(newFirstURL);
+                expect(initialFeed).not.toBe(finalFeed);
             });
         });
     
