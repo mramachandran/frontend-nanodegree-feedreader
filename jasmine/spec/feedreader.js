@@ -120,7 +120,8 @@ $(function() {
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
          * 
-         * Had to increase the timeout second parameter to 1000
+         * InnerHTML dom element is used to get the html markup
+         * contained within the element.
          */
 
         
@@ -129,11 +130,11 @@ $(function() {
             beforeEach(function(done) {        
                   // do some stuff
                   loadFeed(0, function() {
-                     initialFeed = $('.feed')[0].outerHTML;
+                     initialFeed = $('.feed')[0].innerHTML;//https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML
                      console.log(initialFeed);
                     //load a new feed
                     loadFeed(1,function(){
-                         finalFeed = $('.feed')[0].outerHTML;
+                         finalFeed = $('.feed')[0].innerHTML;
                         done();
                     });
 
