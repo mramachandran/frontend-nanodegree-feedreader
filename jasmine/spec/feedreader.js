@@ -26,10 +26,7 @@ $(function() {
          */
         it('are defined', function() {
             expect(allFeeds.length).not.toBe(0);
-            allFeeds.forEach(function(feed) {
-                expect(feed.length).not.toBe(0);        
-            });
-            
+                        
         });
 
 
