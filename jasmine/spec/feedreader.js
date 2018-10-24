@@ -25,7 +25,7 @@ $(function() {
          * page?
          */
         it('are defined', function() {
-            expect(allFeeds).toBeDefined();
+            expect(allFeeds.length).not.toBe(0);
             allFeeds.forEach(function(feed) {
                 expect(feed.length).not.toBe(0);        
             });
@@ -38,9 +38,9 @@ $(function() {
          * and that the URL is not empty.
          */
         it('have URL defined', function() {
-            expect(allFeeds).toBeDefined();
+            expect(allFeeds.length).not.toBe(0);
             allFeeds.forEach(function(feed) {
-                expect(feed.url).not.toBe(0);        
+                expect(feed.url.length).not.toBe(0);        
             });            
            
         });
@@ -51,9 +51,9 @@ $(function() {
          */
 
         it('have Name defined', function() {
-            expect(allFeeds).toBeDefined();
+            expect(allFeeds.length).toBeDefined();
             allFeeds.forEach(function(feed) {
-                expect(feed.name).not.toBe(0);        
+                expect(feed.name.length).not.toBe(0);        
             }); 
         });
 
@@ -77,15 +77,12 @@ $(function() {
         it('is dispalyed when clicked', function() {    
             $('.menu-icon-link').click();      
             expect($( 'body' ).hasClass( "menu-hidden" )).toBe(false);
-        });
-
-        it('is hidden when clicked again', function() {    
             $('.menu-icon-link').click();      
-            expect($( 'body' ).hasClass( "menu-hidden" )).toBe(true);
-        });       
+            expect($( 'body' ).hasClass( "menu-hidden" )).toBe(true);            
+        });     
         
 
-        });
+    });
 
     /* Test suite named "Initial Entries" */
     describe('Initial Entries', function() {
