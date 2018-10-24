@@ -34,8 +34,8 @@ $(function() {
          * in the allFeeds object and ensures it has a URL defined
          * and that the URL is not empty.
          */
+
         it('have URL defined', function() {
-            expect(allFeeds.length).not.toBe(0);
             allFeeds.forEach(function(feed) {
                 expect(feed.url.length).not.toBe(0);        
             });            
@@ -48,7 +48,6 @@ $(function() {
          */
 
         it('have Name defined', function() {
-            expect(allFeeds.length).toBeDefined();
             allFeeds.forEach(function(feed) {
                 expect(feed.name.length).not.toBe(0);        
             }); 
@@ -84,13 +83,11 @@ $(function() {
     /* Test suite named "Initial Entries" */
     describe('Initial Entries', function() {
         beforeEach(function(done) {
-            setTimeout(function() {          
-              // do some stuff
-              loadFeed(0); 
-              oldFirstURL = allFeeds[0].url;  
-              loadFeed(1) ;
-              done();
-              newFirstURL = allFeeds[1].url;                                
+            setTimeout(function() {     
+                loadFeed(0,function(){
+                    done();
+                })    ;
+                       
             }, 1000);
         });
 
