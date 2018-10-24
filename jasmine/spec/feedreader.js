@@ -83,12 +83,12 @@ $(function() {
     /* Test suite named "Initial Entries" */
     describe('Initial Entries', function() {
         beforeEach(function(done) {
-            setTimeout(function() {     
+            //setTimeout(function() {     
                 loadFeed(0,function(){
                     done();
                 })    ;
                        
-            }, 1000);
+            //}, 1000);
         });
 
         /* Test that ensures when the loadFeed
