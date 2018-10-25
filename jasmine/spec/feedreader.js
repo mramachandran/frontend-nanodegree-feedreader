@@ -25,6 +25,11 @@ $(function() {
          * page?
          */
         it('are defined', function() {
+            expect(allFeeds).toBeDefined() 
+                        
+        });
+
+        it('are not empty', function() {
             expect(allFeeds.length).not.toBe(0);
                         
         });
@@ -36,6 +41,13 @@ $(function() {
          */
 
         it('have URL defined', function() {
+            allFeeds.forEach(function(feed) {
+                expect(feed.url).toBeDefined()        
+            });            
+           
+        });
+
+        it(' have non-empty URL ', function() {
             allFeeds.forEach(function(feed) {
                 expect(feed.url.length).not.toBe(0);        
             });            
@@ -49,9 +61,18 @@ $(function() {
 
         it('have Name defined', function() {
             allFeeds.forEach(function(feed) {
+                expect(feed.name).toBeDefined()        
+            });            
+           
+        });
+
+        it('have non-empty name', function() {
+            allFeeds.forEach(function(feed) {
                 expect(feed.name.length).not.toBe(0);        
             }); 
         });
+
+        
 
     });
 
